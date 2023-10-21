@@ -1,0 +1,41 @@
+public class Driver {
+    public static void main(String [] args) {
+        Stack s = new Stack(3);
+        if (s.isEmpty())
+            System.out.println("empty");
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        s.printStack();
+        s.pop();
+        s.printStack();
+        System.out.println(s.peek());
+        s.printStack();
+        System.out.println(s.size());
+        if (!s.isEmpty())
+            System.out.println("not empty");
+        if (s.search(1) != -1)
+            System.out.println("number found at: " + s.search(1));
+        System.out.println("max: " + s.getMax());
+
+        Stack k = new Stack(4);
+        if (!k.isEqual(s))
+            System.out.println("not equal");
+        else 
+            System.out.println("equal");
+
+        k.push(10);
+        k.push(8);
+        k.push(90);
+        k.push(17);
+        k.sort().printStack();
+
+        s.doubleArray();
+        s.push(3);
+        s.push(4);
+        s.push(5);
+        s.push(6);
+        s.printStack();
+        
+    }
+}
