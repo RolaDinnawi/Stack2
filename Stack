@@ -1,0 +1,76 @@
+public class Stack {
+    int [] array;
+    int j = -1;
+    //int n;
+    public Stack (int n) {
+        array = new int[n];
+       // this.n = n;
+    }
+    public void push(int n) {
+        if(j +1 >= array.length){
+            doubleArray();
+        }
+        j++;
+        array[j] = n;
+    }
+    public int pop() {
+        j = j - 1;
+        return array[j + 1];
+    }
+    public boolean isEmpty() {
+        return (j == -1) ? true : false;
+    }
+    public int peek() {
+        return array[j];
+    }
+    public int size() {
+        return j + 1;
+    }
+    public int search(int num) {
+        for (int i = j; i >= 0; i--)
+            if(array[i] == num)
+                return i;
+        return -1;
+    }
+    public void printStack() {
+        for (int i = j; i >= 0; i--)
+            System.out.print(array[i] + " ");
+        System.out.println();
+    }
+    public int getMax() {
+        int max = array[j + 1];
+        for (int i = j; i >= 0; i--)
+            if(array[i] > max)
+                max = array[i];
+        return max;
+    }
+    public void doubleArray() {
+        int [] resized = new int[size() * 2];
+        int index = 0;
+        for (int i = 0; i <= j; i++) {
+            resized [i] = array[i];
+        }
+        array = resized;
+    }
+    public boolean isEqual(Stack s) {
+        if (this.size() != s.size())
+            return false;
+        else {
+            for (int i = j; i >= 0; i--)
+                if(this.array[i] != s.array[i])
+                return false;
+        }
+        return true;
+    }
+    public Stack sort() {
+        Stack tempStack = new Stack(size());
+        while(!this.isEmpty()) {
+            int temp = this.pop();
+            while(!tempStack.isEmpty() && tempStack.peek() > temp) {
+                this.push(tempStack.pop());    
+            }
+            tempStack.push(temp);
+        }
+        return tempStack;
+    }
+}
